@@ -14,7 +14,8 @@ import javax.persistence.*;
 //@Setter
 public class Delivery {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "delivery_id")
     private Long id;
 
@@ -22,7 +23,7 @@ public class Delivery {
     private Order order;
 
     @Embedded
-    private String phone;
+    private String phone; //
 
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status; //ENUM [READY(준비), COMP(배송)]

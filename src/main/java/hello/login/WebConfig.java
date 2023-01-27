@@ -41,7 +41,7 @@ public class WebConfig implements WebMvcConfigurer {
         //"/itemList",
     }
 
-    @Bean
+   // @Bean
     public FilterRegistrationBean logFilter() {
         FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
         filterRegistrationBean.setFilter(new LogFilter());

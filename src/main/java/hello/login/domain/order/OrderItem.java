@@ -57,10 +57,13 @@ public class OrderItem {
 
 
     //==비즈니스 로직==//
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     /** 주문 취소 */
     public void cancel() {
-        getItem().addStock(count);
-        //취소한 주문 수량만큼 상품의 재고를 증가시킨다
+        getItem().addStock(count); //취소한 주문 수량만큼 상품의 재고를 증가시킨다
     }
 
     //==조회 로직==//
@@ -69,8 +72,4 @@ public class OrderItem {
         return getOrderPrice() * getCount();
         //주문 가격에 수량을 곱한 값을 반환
     }*/
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
 }

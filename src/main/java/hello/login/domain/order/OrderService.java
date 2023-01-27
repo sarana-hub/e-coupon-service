@@ -43,6 +43,10 @@ public class OrderService {
         //return order.getId();
     }
 
+    public List<Order> findOrders() {
+        return orderRepository.findAll();
+    }
+
     /** 주문 취소 */
     @Transactional
     public void cancel(Long orderId) {
@@ -55,9 +59,7 @@ public class OrderService {
         return orders;
     }
 
-    public List<Order> findOrders() {
-        return orderRepository.findAll();
-    }
+
 
     /** 주문 내역 검색 */
     //OrderSearch라는 검색 조건을 가진 객체로 주문 엔티티를 검색

@@ -23,10 +23,12 @@ public class OrderRepository {
     //@PersistenceContext EntityManager em;
 
     public void save(Order order) { //주문 엔티티를 저장
+
         em.persist(order);
     }
 
     public Order findById(Long orderId) {
+
         return em.find(Order.class, orderId);
     }
 

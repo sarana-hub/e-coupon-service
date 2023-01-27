@@ -20,7 +20,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class OrderController {
-    private final ItemRepository itemRepository;
+    //private final ItemRepository itemRepository;
 
     private final OrderService orderService;
     //private final LoginService loginService;
@@ -83,13 +83,14 @@ public class OrderController {
     }    */
 
 
-    @GetMapping("/orderList")  //주문 목록 검색
+    @GetMapping("/orderList")
     public String orderList(Model model) {
         List<Order> orders = orderService.findOrders();
         model.addAttribute("orders", orders);
         return "items/orderList";
     }
-    /*public String orderList(@ModelAttribute("orderSearch") OrderSearch orderSearch, Model model) {
+    /*//주문 목록 검색
+    public String orderList(@ModelAttribute("orderSearch") OrderSearch orderSearch, Model model) {
         List<Order> orders = orderService.findOrders(orderSearch);
         model.addAttribute("orders", orders);
         return "items/orderList";

@@ -49,15 +49,16 @@ public class Order {
 
 
     //==연관관계 메서드==//
-    public void setMember(Customer customer) {
+    protected void setMember(Customer customer) {
         this.customer = customer;
         //customer.getOrders().add(this);
     }
-    public void setDelivery(Delivery delivery) {
+    protected void setDelivery(Delivery delivery) {
         this.delivery = delivery;
         delivery.setOrder(this);
     }
     protected void setOrderDate(LocalDateTime orderDate) {
+
         this.orderDate = orderDate;
     }
 
