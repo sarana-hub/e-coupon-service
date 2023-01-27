@@ -1,10 +1,10 @@
-package hello.login.domain.order;
+package hello.login.domain.orderItem;
 
 import hello.login.domain.item.Item;
+import hello.login.domain.order.Order;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;

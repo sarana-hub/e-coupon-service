@@ -3,6 +3,7 @@ package hello.login.domain.order;
 import hello.login.domain.delivery.Delivery;
 import hello.login.domain.delivery.DeliveryStatus;
 import hello.login.domain.customer.Customer;
+import hello.login.domain.orderItem.OrderItem;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

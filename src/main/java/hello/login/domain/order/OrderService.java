@@ -6,6 +6,7 @@ import hello.login.domain.item.Item;
 import hello.login.domain.item.ItemRepository;
 import hello.login.domain.customer.Customer;
 import hello.login.domain.customer.CustomerRepository;
+import hello.login.domain.orderItem.OrderItem;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
