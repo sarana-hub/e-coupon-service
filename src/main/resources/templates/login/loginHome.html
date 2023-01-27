@@ -34,6 +34,13 @@
         </div>
 
         <div class="col">
+            <button class="w-100 btn btn-secondary btn-lg" type="button"
+                    th:onclick="|location.href='@{/orderList}'|">
+                주문관리
+            </button>
+        </div>
+
+        <div class="col">
             <form th:action="@{/logout}" method="post">
                 <button class="w-100 btn btn-dark btn-lg" onclick="location.href='items.html'" type="submit">
                     로그아웃
