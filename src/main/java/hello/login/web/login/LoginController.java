@@ -1,8 +1,11 @@
-package hello.login.domain.login;
+package hello.login.web.login;
 
 import hello.login.domain.customer.Customer;
+import hello.login.domain.login.LoginService;
+import hello.login.domain.login.SessionConst;
 import hello.login.domain.member.Member;
 import hello.login.web.login.LoginForm;
+import hello.login.web.session.SessionManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -24,7 +27,7 @@ import javax.validation.Valid;
 public class LoginController {
 
     private final LoginService loginService;
-    //private final SessionManager sessionManager;
+    private final SessionManager sessionManager;
 
     @GetMapping("/login")
     public String loginForm(@ModelAttribute("loginForm") LoginForm form) {

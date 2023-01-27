@@ -27,10 +27,22 @@ public class HomeController {
     private final SessionManager sessionManager;
 
     @GetMapping("/")
-    public String homeLoginArgumentResolver(HttpServletRequest request, Model model) {
-        //@Login Member loginMember,
+    public String homeLoginArgumentResolver(@Login Member loginMember,
+                                            @Login Customer loginCustomer,
+                                            Model model) {
 
-        HttpSession session = request.getSession(false);
+        if(loginMember != null) {
+            model.addAttribute("member", loginMember);
+            return "login/loginHome";
+        }
+        else if (loginCustomer != null) {
+            model.addAttribute("customer", loginCustomer);
+            return "login/loginCustomerHome";
+        }
+        else {
+            return "home";
+        }
+        /*HttpSession session = request.getSession(false);
         if (session == null) {
             return "home";
         }
@@ -48,27 +60,8 @@ public class HomeController {
         }
         else {
             return "home";
-        }
-
-
-        /*Long loginMember = (Long) session.getAttribute(SessionConst.LOGIN_MEMBER);
-        Long loginCustomer = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
-
-        if(loginMember != null) {
-            Member member=memberRepository.findById(loginMember);
-            model.addAttribute("member", member);
-            //model.addAttribute("member", loginMember);
-            return "login/loginHome";
-        }
-        else if (loginCustomer != null) {
-            Customer customer=customerRepository.findById(loginCustomer);
-
-            model.addAttribute("customer", customer);
-            return "login/loginCustomerHome";
-        }
-        else {
-            return "home";
         }*/
+
     }
 
 }

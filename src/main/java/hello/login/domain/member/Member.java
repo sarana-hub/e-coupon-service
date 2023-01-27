@@ -13,14 +13,16 @@ import java.util.List;
 
 @Entity
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
-//@Setter
+@Setter
+
+/*@AllArgsConstructor
+@NoArgsConstructor*/
 //@Data
 public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
+            //(strategy = GenerationType.AUTO)
     @Column(name = "member_id")
     private Long id;
 
@@ -35,12 +37,12 @@ public class Member {
     @NotEmpty
     private String shop; //매장 이름
 
-    public Member(String loginId, String name, String password, String shop) {
+    /*public Member(String loginId, String name, String password, String shop) {
         this.loginId = loginId;
         this.name = name;
         this.password = password;
         this.shop = shop;
-    }
+    }*/
 
     //private List<Shop> shops = new ArrayList<Shop>();
 }

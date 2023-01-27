@@ -18,32 +18,34 @@ import java.util.List;
 @RequestMapping("/members")
 public class MemberController {
 
-    private final MemberService memberService;
+    //private final MemberService memberService;
+    private final MemberRepository memberRepository;
 
     @GetMapping("/add")
-    public String addForm(Model model) {
-        model.addAttribute("member", new MemberSaveForm());
+    public String addForm(@ModelAttribute("member") Member member) {
 
         return "members/addMemberForm";
     }
 
     @PostMapping("/add")
-    public String save(@Valid @ModelAttribute("member") MemberSaveForm form, BindingResult bindingResult) {
-        List<Member> sameIdMember = memberService.findByLoginId(form.getLoginId());
-
-        if (!sameIdMember.isEmpty()) {
-            bindingResult.rejectValue("loginId","error.already","이미 존재하는 아이디 입니다.");
-        }
+    public String save(@Valid @ModelAttribute Member member, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "members/addMemberForm";
         }
 
-        Member member = new Member(form.getLoginId(),form.getPassword(), form.getName(), form.getShop());
-        memberService.save(member);
+        memberRepository.save(member);
         return "redirect:/";
     }
 
     @GetMapping("/info")
+    public String info(@PathVariable Long id, Model model) {
+        Member member = memberRepository.findById(id);
+        model.addAttribute("member", member);
+
+        return "members/memberInfo";
+    }
+
+    /*@GetMapping("/info")
     public String info(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         Long memberId = (Long) session.getAttribute(SessionConst.LOGIN_MEMBER);
@@ -51,6 +53,6 @@ public class MemberController {
         model.addAttribute("member", member);
 
         return "members/memberInfo";
-    }
+    }*/
 
 }

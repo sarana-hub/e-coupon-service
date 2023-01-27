@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+//@Transactional(readOnly = true)
 public class LoginService {
 
     private final MemberRepository memberRepository;
@@ -22,7 +22,10 @@ public class LoginService {
      * @return null 로그인 실패
      */
     public Member login(String loginId, String password) {
-        List<Member> members = memberRepository.findByLoginId(loginId);
+        return memberRepository.findByLoginId(loginId)
+                .filter(m -> m.getPassword().equals(password))
+                .orElse(null);
+        /*List<Member> members = memberRepository.findByLoginId(loginId);
         if (members == null) {
             return null;
         } else {
@@ -32,11 +35,14 @@ public class LoginService {
                 }
             }
         }
-        return null;
+        return null;*/
     }
 
     public Customer login2(String loginId, String password) {
-        List<Customer> customers = customerRepository.findByLoginId(loginId);
+        return customerRepository.findByLoginId(loginId)
+                .filter(m -> m.getPassword().equals(password))
+                .orElse(null);
+        /*List<Customer> customers = customerRepository.findByLoginId(loginId);
         if (customers == null) {
             return null;
         } else {
@@ -46,6 +52,6 @@ public class LoginService {
                 }
             }
         }
-        return null;
+        return null;*/
     }
 }

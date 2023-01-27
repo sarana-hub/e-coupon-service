@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Slf4j
+/*@Slf4j
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 @Service
@@ -28,4 +28,4 @@ public class MemberService {
         return memberRepository.findById(memberId);
     }
 
-}
+}*/
