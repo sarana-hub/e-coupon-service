@@ -1,4 +1,4 @@
-package hello.login.web.login;
+package hello.login.domain.login;
 
 import hello.login.domain.customer.Customer;
 import hello.login.domain.login.LoginService;

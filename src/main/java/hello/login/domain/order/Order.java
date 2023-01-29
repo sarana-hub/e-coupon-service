@@ -50,7 +50,7 @@ public class Order {
 
 
     //==연관관계 메서드==//
-    protected void setMember(Customer customer) {
+    protected void setCustomer(Customer customer) {
         this.customer = customer;
         //customer.getOrders().add(this);
     }
@@ -74,7 +74,7 @@ public class Order {
     public static Order createOrder(Customer customer, Delivery delivery, OrderItem orderItem) {
         //OrderItem을 리스트로(여러개) 넘김
         Order order = new Order();
-        order.setMember(customer);
+        order.setCustomer(customer);
         order.setDelivery(delivery);
         order.addOrderItem(orderItem);
         order.setOrderDate(LocalDateTime.now());
