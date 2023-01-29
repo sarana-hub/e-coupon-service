@@ -27,6 +27,7 @@ public class CustomerController {
 
     @GetMapping("/add")
     public String addForm(@ModelAttribute("customer") Customer customer) {
+
         return "members/addCustomerForm";
     }
 

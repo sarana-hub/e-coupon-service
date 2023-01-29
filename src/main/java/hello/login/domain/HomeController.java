@@ -24,7 +24,7 @@ public class HomeController {
 
     private final MemberRepository memberRepository;
     private final CustomerRepository customerRepository;
-    private final SessionManager sessionManager;
+    //private final SessionManager sessionManager;
 
     @GetMapping("/")
     public String homeLoginArgumentResolver(@Login Member loginMember,

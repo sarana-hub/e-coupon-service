@@ -1,15 +1,11 @@
 package hello.login.domain.order;
 
-import hello.login.domain.order.Order;
-import hello.login.domain.order.OrderSearch;
+//import hello.login.domain.order.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
+import org.springframework.ui.Model;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
 import java.util.List;
 
 
@@ -37,7 +33,7 @@ public class OrderRepository {
         return orders;
     }
 
-    public List<Order> findOrderByMemberId(Long customerId) {
+    public List<Order> findOrderByCustomerId(Long customerId) {
 
         return em.createQuery("select o from Order o join o.customer m where m.id=:customerId",Order.class)
                 .setParameter("customerId", customerId).getResultList();

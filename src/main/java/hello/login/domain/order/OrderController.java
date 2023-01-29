@@ -1,17 +1,15 @@
 package hello.login.domain.order;
 
 
-import hello.login.domain.item.Item;
+import hello.login.domain.customer.CustomerRepository;
 import hello.login.domain.item.ItemRepository;
-import hello.login.domain.login.SessionConst;
+import hello.login.web.argumentresolver.Login;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**상품 주문 컨트롤러*/
@@ -20,38 +18,74 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class OrderController {
-    //private final ItemRepository itemRepository;
 
     private final OrderService orderService;
+
+    private final CustomerRepository customerRepository;
+    private final ItemRepository itemRepository;
     //private final LoginService loginService;
-    //private final CustomerRepository customerRepository;
-    //private final OrderRepository orderRepository;
 
 
-
-    @PostMapping("/orders/add")
+    //고객 식별자, 주문할 상품 식별자, 수량 정보를 받아서  주문 서비스에 주문을 요청
+    /*@PostMapping("/orders/add")
     public String add(@RequestParam("itemId") Long itemId, @RequestParam("count") int count, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        Long customer = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
-        //Long customerId = session.getAttribute(customerRepository.findById());
-        //CustomerMember customer = customerRepository.findById();
-        orderService.createOrder(itemId, customer, count);
+        Long customerId = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
+        orderService.createOrder(itemId, customerId, count);
+        return "redirect:/itemList";
+    }*/
+    /*@PostMapping("/orders/add")
+    public String add(@RequestParam("itemId") Long itemId, @RequestParam("count") int count,
+                      @Login Long loginCustomer) {
+        //HttpSession session = request.getSession();
+        //Long customerId = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
+        orderService.createOrder(itemId, loginCustomer, count);
+        return "redirect:/itemList";
+    }*/
+    @PostMapping("/orders/add")
+    public String add(@RequestParam("itemId") Long itemId, @RequestParam("count") int count,
+                      @RequestParam("customerId") Long customerId) {
+        //HttpSession session = request.getSession();
+        //Long customerId = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
+        orderService.createOrder(itemId, customerId, count);
         return "redirect:/itemList";
     }
 
     @GetMapping("/orders")
-    public String orders(HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession();
-        Long customerId =(Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
+    public String orders(@Login Long loginCustomer, Model model) {
+        List<Order> orders= orderService.findPersonalOrders(loginCustomer);
+        model.addAttribute("orders", orders);
+        return "order/order";
+    }
+    /*@GetMapping("/orders")
+    //public String orders(HttpServletRequest request, Model model) {
+    public String orders(@Login Customer loginCustomer, Model model) {
+        //HttpSession session = request.getSession();
+        //Long customerId = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
         List<Order> orders = orderService.findPersonalOrders(customerId);
 
         model.addAttribute("orders", orders);
 
         return "order/order";
+    }*/
+
+
+    @GetMapping("/orderList")
+    public String orderList(Model model) {
+        List<Order> orders = orderService.findOrders();
+        model.addAttribute("orders", orders);
+        return "items/orderList";
     }
 
-    /*
-    @GetMapping("/orders")
+    @PostMapping("/orderList/{orderId}/cancel")    //주문 취소
+    public String cancelOrder(@PathVariable("orderId") Long orderId) {
+        orderService.cancel(orderId);
+        return "redirect:/orderList";
+    }
+
+
+
+    /*@GetMapping("/orders")
     public String createForm(@PathVariable Long id, Model model) {
         List<Order> orders = orderService.findPersonalOrders(id);
         model.addAttribute("orders", orders);
@@ -83,22 +117,11 @@ public class OrderController {
     }    */
 
 
-    @GetMapping("/orderList")
-    public String orderList(Model model) {
-        List<Order> orders = orderService.findOrders();
-        model.addAttribute("orders", orders);
-        return "items/orderList";
-    }
+
     /*//주문 목록 검색
     public String orderList(@ModelAttribute("orderSearch") OrderSearch orderSearch, Model model) {
         List<Order> orders = orderService.findOrders(orderSearch);
         model.addAttribute("orders", orders);
         return "items/orderList";
     }*/
-
-    @PostMapping("/orderList/{orderId}/cancel")    //주문 취소
-    public String cancelOrder(@PathVariable("orderId") Long orderId) {
-        orderService.cancel(orderId);
-        return "redirect:/orderList";
-    }
 }

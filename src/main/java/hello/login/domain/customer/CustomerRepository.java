@@ -10,17 +10,21 @@ import java.util.*;
 
 @Slf4j
 @Repository
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class CustomerRepository {
     private static Map<Long, Customer> store = new HashMap<>(); //static 사용
     private static long sequence = 0L;//static 사용
 
+    //private final EntityManager em;
     public Customer save(@Valid Customer customer) {
         customer.setId(++sequence);
         log.info("save: customer={}", customer);
         store.put(customer.getId(), customer);
         return customer;
     }
+    /*public void save(Customer customer) {
+        em.persist(customer);
+    }*/
 
     public Customer findById(Long id) {
         return store.get(id);

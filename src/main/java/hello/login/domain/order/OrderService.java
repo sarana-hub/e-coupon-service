@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -45,6 +46,7 @@ public class OrderService {
     }
 
     public List<Order> findOrders() {
+
         return orderRepository.findAll();
     }
 
@@ -56,7 +58,7 @@ public class OrderService {
     }
 
     public List<Order> findPersonalOrders(Long customerId) {
-        List<Order> orders = orderRepository.findOrderByMemberId(customerId);
+        List<Order> orders = orderRepository.findOrderByCustomerId(customerId);
         return orders;
     }
 
