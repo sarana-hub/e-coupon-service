@@ -57,7 +57,7 @@ public class CustomerController {
         return "members/infoEditForm";
     }
 
-    @PostMapping("/phone/edit")
+    /*@PostMapping("/phone/edit")
     public String edit(String phone, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Long customerId = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
@@ -67,5 +67,5 @@ public class CustomerController {
         //customerService.phoneEdit(customerId, phone);
 
         return "redirect:/members/customerInfo";
-    }
+    }*/
 }

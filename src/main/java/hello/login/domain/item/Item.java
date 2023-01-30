@@ -34,11 +34,13 @@ public class Item {
     /*@ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<Category>();*/
 
-    public Item(String itemName, Integer price, Integer quantity) {
+    public Item(String itemName, Integer price, Integer quantity, String shop) {
         this.itemName = itemName;
         this.price = price;
         this.quantity = quantity;
+        this.shop = shop;
     }
+
 
     //==비즈니스 로직==//
 

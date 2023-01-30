@@ -48,9 +48,6 @@ public class OrderItem {
     //주문상품 엔티티를 생성
     public static OrderItem createOrderItem(Item item, int count, int orderPrice) {
         OrderItem orderItem = new OrderItem(item, count, orderPrice);
-        /*orderItem.setItem(item);
-        orderItem.setOrderPrice(orderPrice);
-        orderItem.setCount(count);*/
         item.removeStock(count);    //주문한 수량만큼 상품의 재고를 줄인다
         return orderItem;
     }
