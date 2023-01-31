@@ -4,6 +4,7 @@ import hello.login.domain.order.Order;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,21 +19,21 @@ import java.util.List;
 public class Customer {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "customer_id")
     private Long id;
 
-    //@NotEmpty
+    @NotEmpty
     /*@Id
     @GeneratedValue
     @Column(name = "customer_id")*/
     private String loginId; //로그인 ID
 
-    //@NotEmpty
+    @NotEmpty
     private String name; //사용자 이름
-    //@NotEmpty
+    @NotEmpty
     private String password;
-    //@NotEmpty
+    @NotEmpty
     private String phone; //전화번호
 
 

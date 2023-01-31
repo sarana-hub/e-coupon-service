@@ -3,6 +3,7 @@ package hello.login.domain.order;
 
 import hello.login.domain.customer.CustomerRepository;
 import hello.login.domain.item.ItemRepository;
+import hello.login.domain.login.SessionConst;
 import hello.login.web.argumentresolver.Login;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**상품 주문 컨트롤러*/
@@ -27,29 +30,29 @@ public class OrderController {
 
 
     //고객 식별자, 주문할 상품 식별자, 수량 정보를 받아서  주문 서비스에 주문을 요청
-    /*@PostMapping("/orders/add")
+    @PostMapping("/orders/add")
     public String add(@RequestParam("itemId") Long itemId, @RequestParam("count") int count, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Long customerId = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
         orderService.createOrder(itemId, customerId, count);
         return "redirect:/itemList";
-    }*/
+    }
     /*@PostMapping("/orders/add")
-    public String add(@RequestParam("itemId") Long itemId, @RequestParam("count") int count,
-                      @Login Long loginCustomer) {
-        //HttpSession session = request.getSession();
-        //Long customerId = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
-        orderService.createOrder(itemId, loginCustomer, count);
-        return "redirect:/itemList";
-    }*/
-    @PostMapping("/orders/add")
     public String add(@RequestParam("itemId") Long itemId, @RequestParam("count") int count,
                       @RequestParam("customerId") Long customerId) {
         //HttpSession session = request.getSession();
         //Long customerId = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
-        orderService.createOrder(itemId, customerId, count);
+        orderService.createOrder(itemId, customerId, count);  //
         return "redirect:/itemList";
-    }
+    }*/
+    /*@PostMapping("/orders/add")
+    public String add(@RequestParam("itemId") Long itemId, @RequestParam("count") int count,
+                      @Login String loginCustomer) {
+        Long customerId = customerRepository.findByLoginId(loginCustomer);
+        orderService.createOrder(itemId, customerId, count);  //
+        return "redirect:/itemList";
+    }*/
+
 
     @GetMapping("/orders")
     public String orders(@Login Long loginCustomer, Model model) {

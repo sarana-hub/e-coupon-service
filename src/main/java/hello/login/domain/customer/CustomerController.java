@@ -1,6 +1,7 @@
 package hello.login.domain.customer;
 
 import hello.login.domain.login.SessionConst;
+import hello.login.web.argumentresolver.Login;
 import hello.login.web.customer.CustomerSaveForm;
 import hello.login.web.member.MemberSaveForm;
 import lombok.RequiredArgsConstructor;
@@ -33,19 +34,27 @@ public class CustomerController {
 
 
     @PostMapping("/add")
-    public String save(@Valid @ModelAttribute Customer customer, BindingResult bindingResult) {
+    public String save(@Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "members/addCustomerForm";
         }
+        //Customer customer = new Customer(customer.getLoginId(), customer.getPassword(), customer.getName(), customer.getPhone());
         customerRepository.save(customer);
         return "redirect:/";
     }
 
-    @GetMapping("/info")
+    /*@GetMapping("/info")
     public String info(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         Long customerId = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
         Customer customer = customerRepository.findById(customerId);
+        model.addAttribute("customer", customer);
+
+        return "members/customerInfo";
+    }*/
+    @GetMapping("/info")
+    public String info(@Login Long loginCustomer, Model model) {
+        Customer customer = customerRepository.findById(loginCustomer);
         model.addAttribute("customer", customer);
 
         return "members/customerInfo";

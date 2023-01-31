@@ -3,6 +3,7 @@ package hello.login.domain.delivery;
 import hello.login.domain.order.Order;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor
-//@Setter
+@Setter
 public class Delivery {
 
     @Id

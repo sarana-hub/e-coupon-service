@@ -3,6 +3,7 @@ package hello.login.domain.customer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.validation.Valid;
@@ -11,6 +12,7 @@ import java.util.*;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class CustomerRepository {
     private static Map<Long, Customer> store = new HashMap<>(); //static 사용
     private static long sequence = 0L;//static 사용

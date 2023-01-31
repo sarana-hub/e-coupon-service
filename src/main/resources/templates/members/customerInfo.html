@@ -19,12 +19,12 @@
 <div class="container">
 
     <div class="py-5 text-center">
-        <h2>회원정보</h2>
+        <h1>회원정보</h1>
     </div>
 
     <h2 th:if="${param.status}" th:text="'수정 완료'"></h2>
 
-    <form action="" th:action th:object="${customer}" method="post">
+    <!--<form action="" th:action th:object="${customer}" method="post">-->
 
     <div>
         <p th:text="|회원 명 : ${customer.name}|">name</p>

@@ -37,6 +37,7 @@ public class TestDataInit {
         customer.setLoginId("tt");
         customer.setPassword("tt");
         customer.setName("test");
+        customer.setPhone("010-1234-5678");
         customerRepository.save(customer);
     }
 

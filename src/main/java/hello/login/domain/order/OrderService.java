@@ -33,7 +33,10 @@ public class OrderService {
         Item item = itemRepository.findById(itemId);
 
         //배송정보 생성
-        Delivery delivery = new Delivery(DeliveryStatus.READY, customer.getPhone());
+        //Delivery delivery = new Delivery(DeliveryStatus.READY, customer.getPhone());  //
+        Delivery delivery = new Delivery();
+        delivery.setPhone(customer.getPhone());
+        delivery.setStatus(DeliveryStatus.READY);
 
         //주문상품 생성
         OrderItem orderItem = OrderItem.createOrderItem(item, count, item.getPrice());

@@ -7,6 +7,7 @@ import hello.login.domain.orderItem.OrderItem;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ import java.util.List;
 
 /**주문 엔티티*/
 
+@Slf4j
 @Entity
 @Table(name = "orders")
 @Getter
@@ -38,7 +40,7 @@ public class Order {
 
     /**모든 연관관계는 지연로딩( LAZY )으로 설정해야함!*/
     //즉시로딩( EAGER )은 예측이 어렵고, 어떤 SQL이 실행될지 추적하기 어렵다
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;  //배송정보
 

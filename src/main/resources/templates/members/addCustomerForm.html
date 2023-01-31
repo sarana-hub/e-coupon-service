@@ -33,25 +33,25 @@
         <div>
             <label for="loginId">로그인 ID</label>
             <input type="text" id="loginId" th:field="*{loginId}" class="form-control"
-                   th:errorclass="field-error">
+                   th:errorclass="field-error" required>
             <div class="field-error" th:errors="*{loginId}" />
         </div>
         <div>
             <label for="password">비밀번호</label>
             <input type="password" id="password" th:field="*{password}" class="form-control"
-                   th:errorclass="field-error">
+                   th:errorclass="field-error" required>
             <div class="field-error" th:errors="*{password}" />
         </div>
         <div>
             <label for="name">이름</label>
             <input type="text" id="name" th:field="*{name}" class="form-control"
-                   th:errorclass="field-error">
+                   th:errorclass="field-error" required>
             <div class="field-error" th:errors="*{name}" />
         </div>
         <div>
             <label for="phone">전화번호</label>
-            <input type="tel" id="phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
-            th:field="*{phone}" class="form-control" th:errorclass="field-error">
+            <input type="tel" id="phone" pattern="[0-9]{3}[0-9]{4}[0-9]{4}" placeholder="010-1234-5678"
+            th:field="*{phone}" class="form-control" th:errorclass="field-error" required>
             <div class="field-error" th:errors="*{phone}" />
         </div>
 
