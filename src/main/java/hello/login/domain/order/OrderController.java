@@ -30,13 +30,13 @@ public class OrderController {
 
 
     //고객 식별자, 주문할 상품 식별자, 수량 정보를 받아서  주문 서비스에 주문을 요청
-    @PostMapping("/orders/add")
+    /*@PostMapping("/orders/add")
     public String add(@RequestParam("itemId") Long itemId, @RequestParam("count") int count, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Long customerId = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
         orderService.createOrder(itemId, customerId, count);
         return "redirect:/itemList";
-    }
+    }*/
     /*@PostMapping("/orders/add")
     public String add(@RequestParam("itemId") Long itemId, @RequestParam("count") int count,
                       @RequestParam("customerId") Long customerId) {
@@ -45,13 +45,13 @@ public class OrderController {
         orderService.createOrder(itemId, customerId, count);  //
         return "redirect:/itemList";
     }*/
-    /*@PostMapping("/orders/add")
+    @PostMapping("/orders/add")
     public String add(@RequestParam("itemId") Long itemId, @RequestParam("count") int count,
-                      @Login String loginCustomer) {
-        Long customerId = customerRepository.findByLoginId(loginCustomer);
-        orderService.createOrder(itemId, customerId, count);  //
+                      @Login Long loginCustomer) {
+        //Long customerId = customerRepository.findByLoginId(loginCustomer);
+        //orderService.createOrder(itemId, customerId, count);  //
         return "redirect:/itemList";
-    }*/
+    }
 
 
     @GetMapping("/orders")
