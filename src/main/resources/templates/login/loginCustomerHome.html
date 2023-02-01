@@ -13,6 +13,7 @@
     </div>
 
     <h4 class="mb-3" th:text="|로그인: ${customer.name} 고객님|">로그인 사용자 이름</h4>
+    <h4 class="mb-3" th:text="|로그인: ${customer.loginId} id|">로그인 사용자 id</h4>
 
     <hr class="my-4">
 
@@ -20,7 +21,7 @@
         <div class="col">
             <button class="w-100 btn btn-secondary btn-lg" type="button"
                     th:onclick="|location.href='@{/customers/info}'|">
-                개인정보
+                회원정보
             </button>
         </div>
 

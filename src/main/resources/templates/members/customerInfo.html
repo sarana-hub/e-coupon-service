@@ -22,24 +22,23 @@
         <h1>회원정보</h1>
     </div>
 
-    <h2 th:if="${param.status}" th:text="'수정 완료'"></h2>
+    <!--<h2 th:if="${param.status}" th:text="'수정 완료'"></h2>-->
 
-    <!--<form action="" th:action th:object="${customer}" method="post">-->
-
-    <div>
-        <p th:text="|회원 명 : ${customer.name}|">name</p>
-    </div>
-    <div>
-        <p th:text="|전화번호 : ${customer.phone}|">phone number</p>
-    </div>
+    <form action="" th:action th:object="${customer}" method="post">
+        <div>
+            <p th:text="|회원 명 : ${customer.name}|">name</p>
+        </div>
+        <div>
+            <p th:text="|전화번호 : ${customer.phone}|">phone number</p>
+        </div>
 <!--
 <form action="/members/address/editForm" method="post">
     <input type="hidden" name="phone" th:value="${customer.phone}">
     <button type="submit">전화번호 수정</button>
 </form>-->
-<button type="button" onclick="location.href='/'">목록으로</button>
+        <button type="button" onclick="location.href='/'">목록으로</button>
 
-</form>
+    </form>
 
 </div> <!-- /container -->
 </body>
