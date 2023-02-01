@@ -7,6 +7,7 @@ import hello.login.domain.item.ItemRepository;
 import hello.login.domain.customer.Customer;
 import hello.login.domain.customer.CustomerRepository;
 import hello.login.domain.orderItem.OrderItem;
+import hello.login.web.argumentresolver.Login;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ public class OrderService {
 
     /**주문 생성*/
     @Transactional
+    //public void createOrder(Long itemId, @Login Customer loginCustomer , int count) {
     public void createOrder(Long itemId, Long customerId, int count) {
         //엔티티 조회
         Customer customer=customerRepository.findById(customerId);

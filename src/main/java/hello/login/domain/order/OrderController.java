@@ -1,6 +1,7 @@
 package hello.login.domain.order;
 
 
+import hello.login.domain.customer.Customer;
 import hello.login.domain.customer.CustomerRepository;
 import hello.login.domain.item.ItemRepository;
 import hello.login.domain.login.SessionConst;
@@ -40,18 +41,22 @@ public class OrderController {
     /*@PostMapping("/orders/add")
     public String add(@RequestParam("itemId") Long itemId, @RequestParam("count") int count,
                       @RequestParam("customerId") Long customerId) {
-        //HttpSession session = request.getSession();
-        //Long customerId = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
         orderService.createOrder(itemId, customerId, count);  //
         return "redirect:/itemList";
     }*/
     @PostMapping("/orders/add")
     public String add(@RequestParam("itemId") Long itemId, @RequestParam("count") int count,
-                      @Login Long loginCustomer) {
-        //Long customerId = customerRepository.findByLoginId(loginCustomer);
-        //orderService.createOrder(itemId, customerId, count);  //
+                      @Login Long customerId) {
+        //orderService.createOrder(itemId, customerId, count);
         return "redirect:/itemList";
     }
+    /*@PostMapping("/orders/add")
+    public String add(@RequestParam("itemId") Long itemId, @RequestParam("count") int count,
+                      @Login Customer customer) {
+        //Long customerId = customerRepository.findByLoginId(loginCustomer);
+        orderService.createOrder(itemId, customer, count);
+        return "redirect:/itemList";
+    }*/
 
 
     @GetMapping("/orders")
